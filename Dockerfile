@@ -10,13 +10,13 @@ COPY . .
 
 RUN pip install --upgrade pip
 
-# Install base deps
+# install base deps (including Pillow)
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 🔥 Install prebuilt dlib ONLY
+# install dlib (prebuilt)
 RUN pip install --no-cache-dir dlib-bin==19.24.2
 
-# 🔥 Install face-recognition WITHOUT dependencies
+# install face recognition (no deps)
 RUN pip install --no-cache-dir --no-deps face-recognition==1.3.0
 
 EXPOSE 10000
