@@ -11,7 +11,7 @@ COPY . .
 RUN pip install --upgrade pip
 
 # Install base deps
-RUN pip install --no-cache-dir flask gunicorn numpy opencv-python-headless
+RUN pip install --no-cache-dir -r requirements.txt
 
 # 🔥 Install prebuilt dlib ONLY
 RUN pip install --no-cache-dir dlib-bin==19.24.2
