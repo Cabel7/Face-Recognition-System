@@ -3,7 +3,7 @@ face-recognition
 opencv-python-headless
 cmake
 dlib-bin==19.24.2
-face-recognition==1.3.0 --no-deps
+#face-recognition
 setuptools<81
 numpy==1.26.4
 waitress
