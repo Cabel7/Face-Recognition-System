@@ -2,7 +2,7 @@ flask
 face-recognition
 opencv-python-headless
 cmake
-dlib-bin==19.24.2
+#dlib-bin==19.24.2
 #face-recognition
 setuptools<81
 numpy==1.26.4
