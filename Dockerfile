@@ -10,10 +10,13 @@ COPY . .
 
 RUN pip install --upgrade pip
 
-# ✅ Install base deps first
-RUN pip install --no-cache-dir -r requirements.txt
+# Install base deps
+RUN pip install --no-cache-dir flask gunicorn numpy opencv-python-headless
 
-# ✅ Install face-recognition WITHOUT pulling dlib again
+# 🔥 Install prebuilt dlib ONLY
+RUN pip install --no-cache-dir dlib-bin==19.24.2
+
+# 🔥 Install face-recognition WITHOUT dependencies
 RUN pip install --no-cache-dir --no-deps face-recognition==1.3.0
 
 EXPOSE 10000
