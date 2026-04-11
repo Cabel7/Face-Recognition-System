@@ -1,0 +1,41 @@
+<h2>Admin Panel</h2>
+
+<a href="/add_attendance">➕ Add Attendance</a><br><br>
+
+<table border="1">
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Date</th>
+<th>Time</th>
+<th>Actions</th>
+</tr>
+
+{% for row in data %}
+<tr>
+<td>{{row[0]}}</td> <!-- ID -->
+<td>{{row[1]}}</td> <!-- Name -->
+<td>{{row[3]}}</td> <!-- Date -->
+<td>{{row[4]}}</td> <!-- Time -->
+
+<td>
+    <a href="/edit/{{row[0]}}">Edit</a>
+    <a href="/delete/{{row[0]}}">Delete</a>
+</td>
+</tr>
+{% endfor %}
+</table>
+
+<a href='/admin_logout'>🚪 Logout</a><br><br>
+
+<script>
+window.addEventListener("pageshow", function (event) {
+    if (event.persisted) {
+        window.location.reload();
+    }
+});
+
+function openCamera() {
+    window.location.href = "/register";  // go to camera page
+}
+</script>

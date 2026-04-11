@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance</title>
+  <link rel="stylesheet" href="/static/styles3.css">
+</head>
+
+<body>
+
+    <!-- Title -->
+    <div class="title">
+        <h1>Attendance Records</h1>
+    </div>
+
+    <div class="bigContainer">
+
+    <!-- Main Card -->
+    <div class="container attendance-container">
+
+        <!-- <h2>Attendance</h2> -->
+
+        <div class="table-box">
+            <table>
+                <tr id="row-heading">
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in data %}
+                <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td>{{row[2]}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("/static/bg.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+  flex-direction: column;
+
+}
+
+.public-attendance .camera .video{
+  border-radius: 10px;
+  border: 2px solid #333;
+}
+
+.container{
+  width: 420px;
+  min-height: 300px;
+  max-height: 500px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(9px);
+  color: #fff;
+  border-radius: 12px;
+  padding: 20px 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.container h2{
+  font-size: 25px;
+  text-align: center;
+}
+
+.public-attendance{
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+}
+
+.public-attendance .btn{
+  display: block;
+  position: relative;
+  width: 70%;
+  height: 45px;
+  margin: 20px auto; /* centers button */
+  margin-top: 10px;  
+  
+  background: #fff;
+  border: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+  font-weight: 550;
+}
+
+.public-attendance .btn:hover{
+  background: #ffffffdd;
+  color: #000000;
+}
+
+#cameraBox{
+  display: none;
+  overflow: hidden; 
+  width: 100%;
+  align-items: center;
+  border-radius: 10px;
+  padding-bottom: 5px;
+}
+
+#video {
+  border: 2px solid #333;
+  margin: 10px auto;
+  border-radius: 10px;
+  width: 100%;
+  display: block;
+  max-width: 300px;
+  /* padding-bottom: 120px; */
+
+}
+
+#status{
+  padding-top: 10px;
+  position: relative;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.log-reg{
+  width: 420px;
+  text-align: center;
+
+  border: 2px solid rgba(255, 255, 255, .2);
+  border-radius: 12px;
+  padding: 10px;
+
+  position: absolute;
+  justify-content: center;
+  top: 90vh; 
+}
+.log-reg span {
+  color: #fff;   /* make it visible */
+  font-size: 18px;
+
+
+}
+
+.log-reg a {
+  color: #fff;          /* your desired color */
+  text-decoration: none;  /* removes underline */
+}
+.log-reg a:hover {
+  color: #ca087d;   /* change on hover */
+  text-decoration: underline;
+}
+
+.title h1{
+  font-size: 30px;
+  text-align: center;
+}
+
+.title{
+  width: 600px;
+  font-size: 30px;
+  text-align: center;
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(9px);
+  color: #fff;
+  border-radius: 12px;
+  padding: 20px 60px;
+  position: absolute;
+  top: 40px;   /* distance from top */
+  left: 50%;
+  transform: translateX(-50%);
+}
+

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Update Face</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            text-align: center;
+            padding-top: 40px;
+        }
+
+
+        video {
+            border-radius: 10px;
+            border: 2px solid #333;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin-top: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:disabled {
+            background: gray;
+        }
+
+        #status {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 8px 15px;
+
+            background: rgba(107, 191, 255, 0.818);
+            border-radius: 30px;
+            color: #ffffff;
+            text-decoration: none;
+
+            transition: 0.3s;
+            }
+
+        .back-btn:hover {
+            background: rgb(0, 165, 231);
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+
+<h2>📸 Update Your Face</h2>
+
+<!-- Username auto-filled -->
+
+<p><b>User:</b> {{ session['user'] }}</p>
+
+<video id="video" width="400" autoplay></video><br>
+
+<button onclick="capture()" id="btn">Capture Face</button>
+
+<p id="count">Images captured: 0</p>
+<p id="status"></p>
+
+<a href="/dashboard/{{ session['user'] }}" class="btn back-btn">
+    ⬅️ Back to Dashboard
+</a>
+
+<script>
+const video = document.getElementById('video');
+const statusText = document.getElementById('status');
+const countText = document.getElementById('count');
+const btn = document.getElementById('btn');
+
+let captureCount = 0;
+
+// 🔥 Start webcam
+navigator.mediaDevices.getUserMedia({ video: true })
+.then(stream => {
+    video.srcObject = stream;
+});
+
+// 🔥 Capture function
+function capture() {
+
+    btn.disabled = true;
+
+    const canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(video, 0, 0);
+
+    const image = canvas.toDataURL("image/jpeg");
+
+    fetch("/capture_face", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            image: image,
+            name: "{{ session['user'] }}"
+        })
+    })
+    .then(res => res.text())
+    .then(data => {
+        captureCount++;
+        countText.innerText = "Images captured: " + captureCount;
+        statusText.innerText = data;
+        btn.disabled = false;
+    })
+    .catch(err => {
+        statusText.innerText = "Error capturing image";
+        btn.disabled = false;
+    });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/static/styles3.css">
+</head>
+<body>
+
+    <!-- Title -->
+    <div class="title">
+        <h1>Welcome to your Dashboard {{name}}</h1>
+    </div>
+
+    <div class="bigContainer">
+        <!-- Main Card -->
+        <div class="container">
+
+            <div class="public-attendance">
+
+                <a href='/register' class="btn">📸 Update Face</a>
+                <a href='/attendance' class="btn">📊 View Attendance</a>
+                <button onclick="startAttendance()" class="btn">
+                    🎯 Mark Attendance
+                </button>
+                <a href='/logout' class="btn" id="log-btn">🚪 Logout</a>
+
+                
+
+                <!-- Camera -->
+                
+
+            </div>
+        </div>
+        <div id="cameraBox">
+            <div class="video-box">
+                <video id="video" autoplay></video>
+                <p id="status"></p>
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+
+<script>
+const video = document.getElementById("video");
+const statusText = document.getElementById("status");
+const cameraBox = document.getElementById("cameraBox");
+
+let stream;
+
+function startAttendance() {
+
+    cameraBox.style.display = "block";
+    statusText.innerText = "Opening camera...";
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+    .then(s => {
+
+        stream = s;
+        video.srcObject = stream;
+
+        statusText.innerText = "Scanning face...";
+
+        setTimeout(() => {
+
+            const canvas = document.createElement("canvas");
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(video, 0, 0);
+
+            const image = canvas.toDataURL("image/jpeg");
+
+            fetch("/start", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ image: image })
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message);
+            });
+
+            stream.getTracks().forEach(track => track.stop());
+            video.srcObject = null;
+            cameraBox.style.display = "none";
+            statusText.innerText = "";
+
+        }, 4000);
+
+    })
+    .catch(() => {
+        alert("Camera access denied");
+    });
+}
+</script>
+
+</html>

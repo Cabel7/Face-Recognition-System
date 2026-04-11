@@ -1,0 +1,191 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("/static/bg.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.wrapper{
+  width: 420px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(9px);
+  color: #fff;
+  border-radius: 12px;
+  padding: 30px 40px;
+}
+.wrapper h2{
+  font-size: 25px;
+  text-align: center;
+}
+
+.wrapper .input-box{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  
+  margin: 30px 0;
+}
+.input-box input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, .2);
+  border-radius: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 20px 45px 20px 20px;
+}
+.input-box input::placeholder{
+  color: #fff;
+}
+.input-box i{
+  position: absolute;
+  right: 20px;
+  top: 30%;
+  transform: translate(-50%);
+  font-size: 20px;
+
+}
+.wrapper .btn{
+  display: block;
+  width: 60%;
+  height: 45px;
+  margin: 20px auto;  /* centers button */
+  margin-top: 40px;  
+  
+  background: #fff;
+  border: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+  font-weight: 550;
+}
+
+.wrapper .btn:hover{
+  background: #ffffffdd;
+  color: #000000;
+}
+
+.btn-register {
+  display: block;
+  width: 60%;
+  height: 45px;
+  margin: 20px auto;  /* centers button */
+  margin-top: 40px;  
+  
+  background: #fff;
+  border: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+  font-weight: 550;
+}
+
+.wrapper .register-link,.login-link{
+  font-size: 14.5px;
+  text-align: center;
+  margin: 20px 0 15px;
+
+}
+
+.register-link p a{
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.login-link p a{
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.register-link p a:hover{
+  text-decoration: underline;
+}
+
+.input-box select {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 0 20px;
+    outline: none;
+    appearance: none; /* removes default arrow */
+    cursor: pointer;
+}
+
+
+/*dropdown menu*/
+.custom-dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Selected box (looks like input) */
+.dropdown-selected {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    border-radius: 40px;
+    border: 2px solid rgba(255,255,255,0.2);
+    color: #fff;
+    background: transparent;
+}
+
+/* Arrow */
+.custom-dropdown::after {
+    content: "▼";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    pointer-events: none;
+    font-size: 12px;
+}
+
+/* Dropdown list */
+.dropdown-options {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background: rgba(20, 20, 40, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    overflow: hidden;
+    display: none;
+    z-index: 1000;
+}
+
+/* Options */
+.dropdown-options div {
+    padding: 12px 20px;
+    color: #fff;
+    transition: 0.2s;
+}
+
+.dropdown-options div:hover {
+    background: rgba(255,255,255,0.15);
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <link rel="stylesheet" href="/static/styles2.css">
+ <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="title">
+        <h1>Face Recognition Attendance</h1>
+    </div>
+    <div class="container">
+
+        <h2>Mark Your Attendance here</h2>
+
+        <br>
+        <div class="public-attendance">
+            <button onclick="startAttendance()" class="btn">🎯 Mark Attendance</button><br>
+
+                <div id="cameraBox">
+                    <video id="video" autoplay></video>
+                    <p id="status"></p>
+                </div>
+        </div>  
+    </div>
+    <div class="log-reg">
+        <a href="/login">🔐 Login</a><span>  /</span><a href="/register_user">📝 Register</a>
+    </div>
+</body>
+
+<script>
+const video = document.getElementById("video");
+const statusText = document.getElementById("status");
+const cameraBox = document.getElementById("cameraBox");
+
+let stream;
+
+function startAttendance() {
+
+    cameraBox.style.display = "block";
+    statusText.innerText = "Opening camera...";
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+    .then(s => {
+
+        stream = s;
+        video.srcObject = stream;
+
+        statusText.innerText = "Scanning face...";
+
+        setTimeout(() => {
+
+            const canvas = document.createElement("canvas");
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(video, 0, 0);
+
+            const image = canvas.toDataURL("image/jpeg");
+
+            fetch("/start", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ image: image })
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message);
+            });
+
+            // 🔥 stop camera
+            stream.getTracks().forEach(track => track.stop());
+
+            // ✅ clear video
+            video.srcObject = null;
+
+            // ✅ hide UI
+            cameraBox.style.display = "none";
+
+            statusText.innerText = "";
+
+        }, 4000);
+
+    })
+    .catch(() => {
+        alert("Camera access denied");
+    });
+}
+</script>
+
+</html>
