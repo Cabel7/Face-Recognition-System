@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir dlib-bin==19.24.2
 # install face recognition (no deps)
 RUN pip install --no-cache-dir --no-deps face-recognition==1.3.0
 
-RUN pip install --no-cache-dir git+https://github.com/ageitgey/face_recognition_models
+RUN pip install --no-cache-dir face-recognition-models
 
 EXPOSE 10000
 
