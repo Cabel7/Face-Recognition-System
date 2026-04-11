@@ -1,7 +1,6 @@
 flask
-opencv-python
 face-recognition
-libboost-all-dev
+opencv-python-headless
 cmake
 dlib-bin
 face-recognition
