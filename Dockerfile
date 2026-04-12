@@ -12,8 +12,14 @@ COPY . .
 
 RUN pip install --upgrade pip
 
-# 🔥 Avoid dlib compilation
-RUN pip install --prefer-binary --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+RUN pip install --no-cache-dir dlib-bin==19.24.2
+
+RUN pip install --no-cache-dir --no-deps face-recognition==1.3.0
+
+# ✅ FIXED (no git)
+RUN pip install --no-cache-dir face-recognition-models
 
 EXPOSE 10000
 
