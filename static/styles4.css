@@ -1,0 +1,99 @@
+*{
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  justify-content: center;
+  background: url("/static/bg.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  
+}
+
+.title h1{
+  font-size: 30px;
+  text-align: center;
+}
+
+.title{
+  width: 400px;
+  font-size: 30px;
+  text-align: center;
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(9px);
+  color: #fff;
+  border-radius: 12px;
+  margin: 30px auto;
+}
+  
+
+
+.table-box {
+  position: relative;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ===== TABLE ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ===== HEADER ===== */
+th {
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+
+  padding: 14px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ===== CELLS ===== */
+td {
+  padding: 12px;
+  font-size: 15px;
+  text-align: center;
+}
+
+/* ===== ROW STYLE ===== */
+tr {
+  transition: 0.2s;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* zebra striping 🔥 */
+tr:nth-child(even) {
+  background: rgba(255,255,255,0.03);
+}
+
+/* hover effect */
+tr:hover {
+  background: rgba(0, 255, 255, 0.08);
+  transform: scale(1.01);
+}
+
+/* ===== SCROLLBAR ===== */
+.table-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.table-box::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.3);
+  border-radius: 10px;
+}

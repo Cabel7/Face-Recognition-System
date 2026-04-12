@@ -13,32 +13,24 @@
         <h1>Welcome to your Dashboard {{name}}</h1>
     </div>
 
-    <div class="bigContainer">
+    <div class="container">
         <!-- Main Card -->
-        <div class="container">
 
-            <div class="public-attendance">
+        <div class="public-attendance">
 
-                <a href='/register' class="btn">📸 Update Face</a>
-                <a href='/attendance' class="btn">📊 View Attendance</a>
-                <button onclick="startAttendance()" class="btn">
-                    🎯 Mark Attendance
-                </button>
-                <a href='/logout' class="btn" id="log-btn">🚪 Logout</a>
+            <a href='/register' class="btn">📸 Update Face</a>
+            <a href='/attendance' class="btn">📊 View Attendance</a>
+            <button onclick="startAttendance()" class="btn">
+                🎯 Mark Attendance
+            </button>
+            <a href='/logout' class="btn" id="log-btn">🚪 Logout</a>  
 
-                
-
-                <!-- Camera -->
-                
-
-            </div>
         </div>
-        <div id="cameraBox">
-            <div class="video-box">
+        <div class="videoBox">
+            <div id="cameraBox">
                 <video id="video" autoplay></video>
                 <p id="status"></p>
             </div>
-            
         </div>
     </div>
 
@@ -52,6 +44,7 @@ const cameraBox = document.getElementById("cameraBox");
 let stream;
 
 function startAttendance() {
+
 
     cameraBox.style.display = "block";
     statusText.innerText = "Opening camera...";
@@ -88,7 +81,7 @@ function startAttendance() {
             stream.getTracks().forEach(track => track.stop());
             video.srcObject = null;
             cameraBox.style.display = "none";
-            statusText.innerText = "";
+            statusText.innerText = "Done";
 
         }, 4000);
 

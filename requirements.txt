@@ -1,17 +1,14 @@
-#flask
-#face-recognition
-#opencv-python-headless
-#cmake
-#dlib-bin==19.24.2
-#face-recognition
+flask
+opencv-python
+face-recognition
+libboost-all-dev
+cmake
+dlib-bin
+face-recognition
 setuptools<81
 numpy==1.26.4
-#waitress
-#pyngrok
-#gunicorn
+waitress
+pyngrok
+gunicorn
 
 # for dlib visit "https://github.com/z-mahmud22/Dlib_Windows_Python3.x"
-flask
-gunicorn
-opencv-python-headless
-Pillow
