@@ -11,7 +11,7 @@ body{
   background-position: center;
   background-attachment: fixed; 
   align-items: center; 
-  min-height: 100vh;
+  min-height: 93vh;
   gap: 10px;
 }
 
@@ -73,11 +73,12 @@ body{
 
 #video {
   border: 2px solid #333;
-  /* margin: 10px auto; */
+  margin: 10px auto;
   border-radius: 10px;
   width: 100%;
   display: block;
   max-width: 300px;
+  align-items: center;
   /* padding-bottom: 120px; */
 
 }
