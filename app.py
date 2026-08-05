@@ -20,7 +20,7 @@ def init_db():
     conn = sqlite3.connect("database/database.db")
     cursor = conn.cursor()
 
-    # ✅ Users table
+    # Users table
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -31,7 +31,7 @@ def init_db():
     )
     """)
 
-    # ✅ Attendance table (THIS WAS MISSING)
+    # Attendance table
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS attendance (
         user_id INTEGER,
@@ -91,7 +91,7 @@ def register_user():
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
-    # 🔥 already logged in → don't allow login page
+    #  already logged in → don't allow login page
     if "user" in session:
         return redirect(f"/dashboard/{session['user']}")
 
@@ -126,7 +126,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-    session.clear()   # 🔥 stronger than pop
+    session.clear()   
     return redirect("/")
 
 
@@ -171,34 +171,34 @@ def start():
     data = request.get_json()
     image_data = data["image"]
 
-    # 🔥 Decode image from browser
+    #  Decode image from browser
     image_data = image_data.split(",")[1]
     image_bytes = base64.b64decode(image_data)
 
     np_arr = np.frombuffer(image_bytes, np.uint8)
     frame = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
 
-    # ✅ USE THIS (correct function)
+    #  USE THIS (correct function)
     detected_name = recognize_from_frame(frame)
 
     if not detected_name:
         return {"status": "error", "message": "Not Recognised"}
     
 
-    # 🔥 CASE 1: User is LOGGED IN
+    # CASE 1: User is LOGGED IN
     if "user" in session:
 
-        # ❌ If face doesn't match account → block
+        # If face doesn't match account → block
         if detected_name.strip().lower() != session["user"].strip().lower():
             return {"status": "error", "message": "Face does NOT match logged-in user"}
 
         name_to_mark = session["user"]
 
-    # 🔥 CASE 2: Public (no login)
+    # CASE 2: Public (no login)
     else:
         name_to_mark = detected_name
 
-    # ✅ Mark attendance
+    # Mark attendance
     conn = sqlite3.connect("database/database.db")
     cursor = conn.cursor()
 
@@ -213,7 +213,7 @@ def start():
 
     user_id = user[0]
 
-    # 🔥 Prevent duplicate
+    # Prevent duplicate
     cursor.execute(
         "SELECT * FROM attendance WHERE user_id=? AND date=date('now')",
         (user_id,)
@@ -242,7 +242,7 @@ def attendance():
     if "user" not in session:
         return redirect("/login")
 
-    role = session.get("role")   # ✅ GET ROLE FROM SESSION
+    role = session.get("role")   # GET ROLE FROM SESSION
 
     conn = sqlite3.connect("database/database.db")
     cursor = conn.cursor()
@@ -291,7 +291,7 @@ def capture_face_api():
     image_data = data["image"]
     name = data["name"]
 
-    # 🔥 Create folder if not exists
+    # Create folder if not exists
     user_dir = f"dataset/{name.lower()}"
     os.makedirs(user_dir, exist_ok=True)
 
@@ -315,7 +315,7 @@ def capture_face_api():
 
     print("Files in folder:", len(os.listdir(user_dir)))
 
-    encode_faces()   # 🔥 ALWAYS RUN
+    encode_faces()   # ALWAYS RUN
 
     return f"Saved image for {name}"
 
@@ -407,7 +407,7 @@ def edit(id):
 
         return redirect("/admin_panel")
 
-    # 🔥 GET → fetch existing data
+    # GET → fetch existing data
     cursor.execute("SELECT date, time FROM attendance WHERE rowid=?", (id,))
     data = cursor.fetchone()
 
@@ -440,7 +440,7 @@ def add_attendance():
 
         return redirect("/admin_panel")
 
-    # 🔥 Load users for dropdown
+    # Load users for dropdown
     cursor.execute("SELECT id, name FROM users")
     users = cursor.fetchall()
 
